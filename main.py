@@ -26,20 +26,23 @@ class Monitor:
         except Exception as e:
             print(e)
         finally:
-            if self.hash == newHash:
+            if self.hash == None:
+                print("Site monitor is now running.")
+            elif self.hash == newHash:
                 print("Nothing changed.")
             else:
                 print("Something changed.")
-                self.hash = newHash        
-                self.response = newResponse
-                
+
+            self.hash = newHash        
+            self.response = newResponse
+
 
 if __name__ == '__main__':
     monitor = Monitor(URL)
 
     while True:
         monitor.update()
-        time.sleep(2)
+        time.sleep(TIMER)
 
 
             
